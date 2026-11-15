@@ -43,7 +43,7 @@ Never add these values to repository files. Do not share screenshots showing sec
 
 ## Build
 
-After all four secrets exist, open **Actions → Android APK → Run workflow**. The APK is uploaded as the workflow artifact `ARCANA-Android-APK` for 30 days.
+After all three secrets exist, open **Actions → Android APK → Run workflow**. The APK is uploaded as the workflow artifact `ARCANA-Android-APK` for 30 days.
 
 The workflow currently exports a signed ARM64 APK. It is suitable for compatible modern Android devices. A successful workflow run is required before installing the first build.
 
