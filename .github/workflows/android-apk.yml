@@ -67,7 +67,7 @@ jobs:
         env:
           GODOT_ANDROID_KEYSTORE_RELEASE_PATH: ${{ runner.temp }}/arcana-release.keystore
           GODOT_ANDROID_KEYSTORE_RELEASE_USER: ${{ secrets.ARCANA_KEY_ALIAS }}
-          GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD: ${{ secrets.ARCANA_KEY_PASSWORD }}
+          GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD: ${{ secrets.ARCANA_KEYSTORE_PASSWORD }}
         run: |
           mkdir -p game/builds
           godot --headless --path game --export-release "Android" builds/ARCANA.apk
