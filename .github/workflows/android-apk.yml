@@ -73,6 +73,21 @@ jobs:
           echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/arcana-release.keystore"
           test -s "$RUNNER_TEMP/arcana-release.keystore"
 
+      - name: Validate signing credentials
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.ARCANA_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ARCANA_KEY_ALIAS }}
+        run: |
+          if ! keytool -list -keystore "$RUNNER_TEMP/arcana-release.keystore" -storetype PKCS12 -storepass "$KEYSTORE_PASSWORD" >/dev/null 2>&1; then
+            echo "::error::ARCANA_KEYSTORE_PASSWORD does not unlock the uploaded PKCS12 keystore."
+            exit 1
+          fi
+          if ! keytool -list -keystore "$RUNNER_TEMP/arcana-release.keystore" -storetype PKCS12 -storepass "$KEYSTORE_PASSWORD" -alias "$KEY_ALIAS" >/dev/null 2>&1; then
+            echo "::error::ARCANA_KEY_ALIAS does not match an entry in the uploaded keystore."
+            exit 1
+          fi
+          echo "Signing keystore password and alias verified."
+
       - name: Import Godot project
         run: godot --headless --editor --path game --quit --verbose
 
