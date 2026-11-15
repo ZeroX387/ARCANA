@@ -19,7 +19,7 @@ Create a keystore once with a trusted local `keytool` installation:
 keytool -genkeypair -v -keystore arcana-release.keystore -alias arcana -keyalg RSA -keysize 2048 -validity 10000
 ```
 
-Use the same keystore, alias, and passwords for every future release. Do not send the keystore or passwords in chat, issues, commits, or public files.
+Use the same keystore, alias, and password for every future release. For this Godot 4.3 preset, use the same password for the keystore and key. Do not send the keystore or password in chat, issues, commits, or public files.
 
 Convert the keystore file to Base64 for a GitHub Actions secret:
 
@@ -36,9 +36,8 @@ In the repository, open **Settings → Secrets and variables → Actions → New
 | Secret name | Value |
 |---|---|
 | `ARCANA_KEYSTORE_BASE64` | Entire Base64 string of the keystore |
-| `ARCANA_KEYSTORE_PASSWORD` | Keystore password (keep as a backup; the workflow currently uses the key password for Godot signing) |
+| `ARCANA_KEYSTORE_PASSWORD` | Keystore/key password (use the same password for both) |
 | `ARCANA_KEY_ALIAS` | Alias, initially `arcana` |
-| `ARCANA_KEY_PASSWORD` | Password for the key |
 
 Never add these values to repository files. Do not share screenshots showing secret values.
 
