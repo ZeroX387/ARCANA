@@ -83,7 +83,7 @@ jobs:
           GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD: ${{ secrets.ARCANA_KEYSTORE_PASSWORD }}
         run: |
           mkdir -p game/builds
-          godot --headless --verbose --path game --export-release "Android" game/builds/ARCANA.apk
+          godot --headless --verbose --path game --export-release "Android" builds/ARCANA.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
